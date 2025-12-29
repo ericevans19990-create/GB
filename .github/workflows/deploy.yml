@@ -24,12 +24,18 @@ jobs:
       - name: Build project
         run: npm run build
       
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+      
       - name: Deploy to Hostinger
-        uses: easingthemes/ssh-deploy@main
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rltgoDzvO --delete"
-          SOURCE: "dist/"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.TARGET_PATH }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          TARGET_PATH: ${{ secrets.TARGET_PATH }}
+        run: |
+          rsync -avz --delete \
+            -e "sshpass -p '$SSH_PASSWORD' ssh -o StrictHostKeyChecking=no -p $SSH_PORT" \
+            dist/ \
+            $SSH_USER@$SSH_HOST:$TARGET_PATH/
