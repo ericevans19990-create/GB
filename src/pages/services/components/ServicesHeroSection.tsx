@@ -1,0 +1,32 @@
+
+import { useEffect, useState } from 'react';
+
+export default function ServicesHeroSection() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  return (
+    <section 
+      className="relative min-h-[70vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero.jpg')`
+      }}
+    >
+      <div className="container mx-auto px-4 text-center text-white">
+        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Nos Services
+            <span className="block text-blue-400">Experts</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
+            Solutions complètes de sourcing, contrôle qualité et logistique internationale 
+            pour optimiser votre chaîne d'approvisionnement.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

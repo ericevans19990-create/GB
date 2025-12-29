@@ -1,0 +1,17 @@
+
+export default function LegalHeroSection() {
+  return (
+    <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Mentions Légales
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Informations légales et conditions d'utilisation de notre plateforme de sourcing
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
